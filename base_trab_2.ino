@@ -44,7 +44,7 @@ int somaBit(int b1a, int b2a, int cBit)
 {
 	int bitResult = 0;
 	int aux1, aux2 = 0;
-	if (1)
+	if ((b1a ^b2a) ^ cBit)
 	{
 		bitResult = 1;
 	}
@@ -58,7 +58,7 @@ int somaBit(int b1a, int b2a, int cBit)
 int somaCarryBit(int b1a, int b2a, int cBit)
 {
 	int aux1, aux2 = 0;
-	if (1)
+	if ((b1a && b2a)||(b1a && cBit)||(b2a && cBit))
 	{
 		cBit = 1;
 	}
@@ -71,24 +71,34 @@ int somaCarryBit(int b1a, int b2a, int cBit)
 
 void loop()
 {
-	soma = 1;
-	nib1a = digitalRead(0);
+	soma = 1;  // Define a operação como soma (sempre 1 neste código)
+	nib1a = digitalRead(0);  // Bit menos significativo
 	nib1b = digitalRead(1);
 	nib1c = digitalRead(2);
-	nib1d = digitalRead(3);
-	nib2a = digitalRead(4);
+	nib1d = digitalRead(3);  // Bit mais significativo
+
+	// Lê os valores dos próximos 4 bits de entrada (segundo número)
+	nib2a = digitalRead(4);  // Bit menos significativo
 	nib2b = digitalRead(5);
 	nib2c = digitalRead(6);
-	nib2d = digitalRead(7);
+	nib2d = digitalRead(7);  // Bit mais significativo
 	if (soma == 1)
 	{
-		carryBit = 0;
+		carryBit = 0;  // Inicializa o carry como 0
+		
+        // Calcula o bit menos significativo do resultado
 		res1a = somaBit(nib1a,nib2a,carryBit);
 		carryBit = somaCarryBit(nib1a,nib2a,carryBit);
+
+		// Calcula o segundo bit do resultado
 		res1b = somaBit(nib1b,nib2b,carryBit);
 		carryBit = somaCarryBit(nib1b,nib2b,carryBit);
+
+		// Calcula o terceiro bit do resultado
 		res1c = somaBit(nib1c,nib2c,carryBit);
 		carryBit = somaCarryBit(nib1c,nib2c,carryBit);
+
+		// Calcula o bit mais significativo do resultado
 		res1d = somaBit(nib1d,nib2d,carryBit);
 		carryBit = somaCarryBit(nib1d,nib2d,carryBit);
 	}
@@ -98,4 +108,5 @@ void loop()
 	digitalWrite(11,res1d);
 	digitalWrite(12,carryBit);
 }
+
 
