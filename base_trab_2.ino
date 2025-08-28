@@ -1,112 +1,90 @@
-//TÉCNICO EM DESENVOLVIMENTO DE SISTEMAS - SENAC NH
-//Programa base para TRABALHO 2
-//PROF.: Glauber Kiss de Souza
-//DISC.: Analizar Orient. Técnicas
+// TECHNICIAN IN SYSTEMS DEVELOPMENT - SENAC NH
+// WORK 2: 4-bit adder
+// TEACHER: Glauber Kiss de Souza
+// DISC.: Technically Oriented Analysis
 
-// Variáveis globais para armazenar os valores
-int soma = 1;          // Flag para indicar se a operação é soma (1) ou subtração (0)
-int carryBit = 0;      // Bit de carry (vai-um) da operação
+// Variables for the input nibbles (4 bits)
+int nib1a, nib1b, nib1c, nib1d = 0;  // First number (bits a, b, c, d)
+int nib2a, nib2b, nib2c, nib2d = 0;  // Second number (bits a, b, c, d)
 
-// Variáveis para os nibbles (4 bits) de entrada
-int nib1a,nib1b,nib1c,nib1d = 0;  // Primeiro número de 4 bits (bits a, b, c, d)
-int nib2a,nib2b,nib2c,nib2d = 0;  // Segundo número de 4 bits (bits a, b, c, d)
+// Variables for the result bits
+int res1a, res1b, res1c, res1d = 0;  // 4-bit sum result
+int carryBit = 0;                     // Carry bit (overflow)
 
-// Variáveis para os bits do resultado
-int res1a,res1b,res1c,res1d = 0;  // Resultado da soma de 4 bits
+void setup() {
+    // Configure input pins for the two 4-bit numbers
+    pinMode(0, INPUT);  // Bit a of the first number
+    pinMode(1, INPUT);  // Bit b of the first number
+    pinMode(2, INPUT);  // Bit c of the first number
+    pinMode(3, INPUT);  // Bit d of the first number (most significant)
+    
+    pinMode(4, INPUT);  // Bit a of the second number
+    pinMode(5, INPUT);  // Bit b of the second number
+    pinMode(6, INPUT);  // Bit c of the second number
+    pinMode(7, INPUT);  // Bit d of the second number (most significant)
 
-void setup()
-{
-	// Configura os pinos de entrada para os dois números de 4 bits
-	pinMode(0, INPUT);  // Bit a do primeiro número
-	pinMode(1, INPUT);  // Bit b do primeiro número
-	pinMode(2, INPUT);  // Bit c do primeiro número
-	pinMode(3, INPUT);  // Bit d do primeiro número (mais significativo)
-	
-	pinMode(4, INPUT);  // Bit a do segundo número
-	pinMode(5, INPUT);  // Bit b do segundo número
-	pinMode(6, INPUT);  // Bit c do segundo número
-	pinMode(7, INPUT);  // Bit d do segundo número (mais significativo)
+    // Configure output pins for the result
+    pinMode(8, OUTPUT);   // Bit a of the result
+    pinMode(9, OUTPUT);   // Bit b of the result
+    pinMode(10, OUTPUT);  // Bit c of the result
+    pinMode(11, OUTPUT);  // Bit d of the result (most significant)
+    pinMode(12, OUTPUT);  // Carry bit of the result
 
-	// Configura os pinos de saída para o resultado
-	pinMode(8, OUTPUT);   // Bit a do resultado
-	pinMode(9, OUTPUT);   // Bit b do resultado
-	pinMode(10, OUTPUT);  // Bit c do resultado
-	pinMode(11, OUTPUT);  // Bit d do resultado (mais significativo)
-	pinMode(12, OUTPUT);  // Bit de carry (vai-um) do resultado
-
-	// Pino 13 não utilizado no momento, mas configurado como entrada
-	pinMode(13, INPUT);
+    // Pin 13 not currently used, configured as input
+    pinMode(13, INPUT);
 }
 
-// Função para calcular o bit de soma usando álgebra booleana
-// Implementa a lógica de um full adder: S = A ⊕ B ⊕ Cin
-int somaBit(int b1a, int b2a, int cBit)
-{
-	int bitResult = 0;
-	int aux1, aux2 = 0;
-	if ((b1a ^b2a) ^ cBit)
-	{
-		bitResult = 1;
-	}
-	else
-	{
-		bitResult = 0;
-	}
-	return bitResult;
+// Function to calculate the sum bit using boolean algebra
+// Implements the logic of a full adder: S = A ⊕ B ⊕ Cin
+int sumBit(int b1, int b2, int cIn) {
+    return (b1 ^ b2) ^ cIn;
 }
 
-int somaCarryBit(int b1a, int b2a, int cBit)
-{
-	int aux1, aux2 = 0;
-	if ((b1a && b2a)||(b1a && cBit)||(b2a && cBit))
-	{
-		cBit = 1;
-	}
-	else
-	{
-		cBit = 0;
-	}
-	return cBit;
+// Function to calculate the carry bit using boolean algebra
+// Implements the logic of a full adder: Cout = (A AND B) OR (A AND Cin) OR (B AND Cin)
+int sumCarryBit(int b1, int b2, int cIn) {
+    return (b1 && b2) || (b1 && cIn) || (b2 && cIn);
 }
 
-void loop()
-{
-	soma = 1;  // Define a operação como soma (sempre 1 neste código)
-	nib1a = digitalRead(0);  // Bit menos significativo
-	nib1b = digitalRead(1);
-	nib1c = digitalRead(2);
-	nib1d = digitalRead(3);  // Bit mais significativo
+void loop() {
+    // Read the first 4-bit input (first number)
+    nib1a = digitalRead(0);  // Least significant bit
+    nib1b = digitalRead(1);
+    nib1c = digitalRead(2);
+    nib1d = digitalRead(3);  // Most significant bit
 
-	// Lê os valores dos próximos 4 bits de entrada (segundo número)
-	nib2a = digitalRead(4);  // Bit menos significativo
-	nib2b = digitalRead(5);
-	nib2c = digitalRead(6);
-	nib2d = digitalRead(7);  // Bit mais significativo
-	if (soma == 1)
-	{
-		carryBit = 0;  // Inicializa o carry como 0
-		
-        // Calcula o bit menos significativo do resultado
-		res1a = somaBit(nib1a,nib2a,carryBit);
-		carryBit = somaCarryBit(nib1a,nib2a,carryBit);
+    // Read the next 4-bit input (second number)
+    nib2a = digitalRead(4);  // Least significant bit
+    nib2b = digitalRead(5);
+    nib2c = digitalRead(6);
+    nib2d = digitalRead(7);  // Most significant bit
 
-		// Calcula o segundo bit do resultado
-		res1b = somaBit(nib1b,nib2b,carryBit);
-		carryBit = somaCarryBit(nib1b,nib2b,carryBit);
+    // Initialize carry bit to 0
+    carryBit = 0;
 
-		// Calcula o terceiro bit do resultado
-		res1c = somaBit(nib1c,nib2c,carryBit);
-		carryBit = somaCarryBit(nib1c,nib2c,carryBit);
+    // Calculate the least significant bit of the result
+    res1a = sumBit(nib1a, nib2a, carryBit);
+    carryBit = sumCarryBit(nib1a, nib2a, carryBit);
 
-		// Calcula o bit mais significativo do resultado
-		res1d = somaBit(nib1d,nib2d,carryBit);
-		carryBit = somaCarryBit(nib1d,nib2d,carryBit);
-	}
-	digitalWrite(8,res1a);
-	digitalWrite(9,res1b);
-	digitalWrite(10,res1c);
-	digitalWrite(11,res1d);
-	digitalWrite(12,carryBit);
+    // Calculate the second bit of the result
+    res1b = sumBit(nib1b, nib2b, carryBit);
+    carryBit = sumCarryBit(nib1b, nib2b, carryBit);
+
+    // Calculate the third bit of the result
+    res1c = sumBit(nib1c, nib2c, carryBit);
+    carryBit = sumCarryBit(nib1c, nib2c, carryBit);
+
+    // Calculate the most significant bit of the result
+    res1d = sumBit(nib1d, nib2d, carryBit);
+    carryBit = sumCarryBit(nib1d, nib2d, carryBit);
+
+    // Write the result to the output pins
+    digitalWrite(8, res1a);
+    digitalWrite(9, res1b);
+    digitalWrite(10, res1c);
+    digitalWrite(11, res1d);
+    digitalWrite(12, carryBit);
 }
+
 
 
