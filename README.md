@@ -1,2 +1,1 @@
-# aot_trab2
-Arquivos e códigos do trabalho 2 da matéria Analisar Orientações Técnicas.
+This project implements a 4-bit binary adder using an Arduino microcontroller. The system reads two 4-bit binary numbers from input pins, performs binary addition, and displays the result (4-bit sum and carry bit) on output pins. This project demonstrates fundamental digital logic concepts and Arduino programming skills.
