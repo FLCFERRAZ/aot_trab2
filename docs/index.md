@@ -1,9 +1,9 @@
 # Index
-# Documentação do Projeto
+# Project Documentation
 
-Bem-viondo à documentação do nosso projeto. Aqui você encontrará informações sobre a instalação, uso e API.
+Welcome to our project documentation. Here you'll find information about installation, usage, and the API.
 
-- [Visão Geral](overview.md)
-- [Instalação](installation.md)
-- [Uso](usage.md)
-- [Exemplos](examples.md)
+- [Overview](overview.md)
+- [Installation](installation.md)
+- [Usage](usage.md)
+- [Images](images.md)
