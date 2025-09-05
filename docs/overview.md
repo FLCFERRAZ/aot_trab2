@@ -23,20 +23,20 @@ This project implements a 4-bit binary adder using an Arduino microcontroller. T
 # Circuit Connection Details
 ## Input Pins (4-bit numbers):
 * First Number (A):
-  1. Bit 0 (LSB): Arduino Pin 0
-  2. Bit 1: Arduino Pin 1
-  3. Bit 2: Arduino Pin 2
-  4. Bit 3 (MSB): Arduino Pin 3
+  * Bit 0 (LSB): Arduino Pin 0
+  * Bit 1: Arduino Pin 1
+  * Bit 2: Arduino Pin 2
+  * Bit 3 (MSB): Arduino Pin 3
 * Second Number (B):
-  1. Bit 0 (LSB): Arduino Pin 4
-  2. Bit 1: Arduino Pin 5
-  3. Bit 2: Arduino Pin 6
-  4. Bit 3 (MSB): Arduino Pin 7
+  * Bit 0 (LSB): Arduino Pin 4
+  * Bit 1: Arduino Pin 5
+  * Bit 2: Arduino Pin 6
+  * Bit 3 (MSB): Arduino Pin 7
 ## Output Pins (Result):
 * Sum Output:
-  1. Bit 0 (LSB): Arduino Pin 8
-  2. Bit 1: Arduino Pin 9
-  3. Bit 2: Arduino Pin 10
-  4. Bit 3 (MSB): Arduino Pin 11
+  * Bit 0 (LSB): Arduino Pin 8
+  * Bit 1: Arduino Pin 9
+  * Bit 2: Arduino Pin 10
+  * Bit 3 (MSB): Arduino Pin 11
 * Carry Bit: Arduino Pin 12
 
