@@ -4,11 +4,11 @@ This project implements a 4-bit binary adder using an Arduino microcontroller. T
 4-bit-binary-adder/
 >├── src/
 >
-│>>└── 4_bit_adder.ino    # Main Arduino sketch
+>│    └── 4_bit_adder.ino    # Main Arduino sketch
 >
 >├── docs/
 >
-│>>└── circuit_diagram.png # Wiring diagram (to be added)
+>│    └── circuit_diagram.png # Wiring diagram (to be added)
 >
 >├── README.md              # Project documentation
 >
