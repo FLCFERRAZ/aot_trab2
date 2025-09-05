@@ -101,11 +101,11 @@
 >>
 >The Arduino sketch includes:
 >>
-> 1.Setup Function: Configures input and output pins
+> 1.  Setup Function: Configures input and output pins
 >>
-> 2.Loop Function: Continuously reads inputs, performs addition, and updates outputs
+> 2.  Loop Function: Continuously reads inputs, performs addition, and updates outputs
 >
-> 3.Helper Functions:
+> 3.  Helper Functions:
 >
 >  *sumBit(): Calculates the sum bit using XOR logic
 >
@@ -113,17 +113,17 @@
 >>
 >Operational Flow
 >>
-> 1.Read two 4-bit numbers from input pins
+> 1.  Read two 4-bit numbers from input pins
 >
-> 2.Initialize carry bit to 0
+> 2.  Initialize carry bit to 0
 >
-> 3.Process each bit from least significant to most significant:
+> 3.  Process each bit from least significant to most significant:
 >
 >  *Calculate sum bit for current position
 >
 >  *Calculate carry bit for next position
 >
-> 4.Display the 4-bit result and final carry bit on output pins
+> 4.  Display the 4-bit result and final carry bit on output pins
 >>
 >Getting Started
 >>
@@ -137,23 +137,23 @@
 >>
 >Installation
 >>
-> 1.Clone or download this repository
+> 1.  Clone or download this repository
 >
-> 2.Open the 4_bit_adder.ino file in Arduino IDE
+> 2.  Open the 4_bit_adder.ino file in Arduino IDE
 >
-> 3.Connect your Arduino board to the computer
+> 3.  Connect your Arduino board to the computer
 >
-> 4.Wire the circuit according to the connection details
+> 4.  Wire the circuit according to the connection details
 >
-> 5.Upload the sketch to your Arduino
+> 5.  Upload the sketch to your Arduino
 >>
 >Usage
 >>
-> 1.Set the input pins (0-7) to HIGH (5V) or LOW (0V) to represent binary 1 or 0
+> 1.  Set the input pins (0-7) to HIGH (5V) or LOW (0V) to represent binary 1 or 0
 >
-> 2.The output pins (8-12) will light up LEDs to show the binary result
+> 2.  The output pins (8-12) will light up LEDs to show the binary result
 >
-> 3.Pin 12 indicates the carry bit (overflow)
+> 3.  Pin 12 indicates the carry bit (overflow)
 >>
 >Applications
 >>
